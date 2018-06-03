@@ -4,6 +4,13 @@ Created on Tue May 22 22:11:57 2018
 
 @author: Dan
 """
+import pieces
+import logging
+
+
+logger = logging.getLogger('BOARD')
+#logger.setLevel(logging.ERROR)
+logger.setLevel(logging.DEBUG)
 
 class ChessBoard:
     
@@ -14,8 +21,8 @@ class ChessBoard:
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,Pawn(5, 2, 0),0,0,0],
-                      [0,0,0,0,King(5, 1, 0),0,0,0]]
+                      [0,0,0,0,pieces.Pawn(5, 2, 0),0,0,0],
+                      [0,0,0,0,pieces.King(5, 1, 0),0,0,0]]
     def display(self):
         for rank in self.ranks:
             for square in rank:
@@ -26,44 +33,30 @@ class ChessBoard:
     
     def removeIllegalMoves(self, p):
         moveset = p.getMoveset();
+        correctMoveSet = []
         for move in moveset:
-            if(move[0] > 8 or move[0] < 1 or move[1] > 8 or move[1] < 1):
-                moveset.remove(move)
-        return moveset
-
-class Piece:
-        
-    def __init__(self, current_x, current_y, color):
-        self.x = current_x
-        self.y = current_y
-        self.color = color
-        
-    def getMoveset(self):
-        print("No piece should get here")
+            logger.debug('Evaluating move %r', move)
+            if(self.outOfBounds(move) or self.occupiedBySameColor(move, p)):
+                logger.debug('Invalid move found %r', move)
+            else:
+                correctMoveSet.append(move)
+        return correctMoveSet
     
-class King(Piece):
-        
+    def outOfBounds(self, move):
+        return move[0] > 8 or move[0] < 1 or move[1] > 8 or move[1] < 1
     
-    def __str__(self):
-        return "K"  
-    
-    def getMoveset(self):
-        return [(self.x + 1, self.y),
-                (self.x + 1, self.y + 1),
-                (self.x + 1, self.y - 1),
-                (self.x - 1, self.y),
-                (self.x - 1, self.y + 1),                
-                (self.x - 1, self.y - 1),
-                (self.x, self.y + 1),                
-                (self.x, self.y - 1)]
-    
-        
-class Pawn(Piece):
-    def __str__(self):
-        return "p"  
+    def occupiedBySameColor(self, move, piece):
+        square = self.ranks[8 - move[1]][move[0] - 1] 
+        logger.debug('Object for square %r', square)
+        if square == 0:
+            return 0
+        else:            
+            logger.debug('Color for square %r', square.color)
+            logger.debug('Color for piece %r', piece.color)
+            return square.color == piece.color
 
         
-king = King(5, 1, 0)
+king = pieces.King(5, 1, 0)
 print(king.getMoveset())
 board = ChessBoard()
 print(board.removeIllegalMoves(king))
