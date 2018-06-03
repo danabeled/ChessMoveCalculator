@@ -43,10 +43,25 @@ class ChessBoard:
         return correctMoveSet
     
     def outOfBounds(self, move):
+        """Determines if a move is within the board 
+        
+        For some pieces it was easier to make their complete moveset than calculate
+        in the subclass, since the moves were so limited, this makes the need
+        to check movesets
+        
+        Args:
+            move: A move where [0] is the x coordinate and [1] is the y coordinate
+            
+        Returns:
+            boolean of if within board or not
+        """
         return move[0] > 8 or move[0] < 1 or move[1] > 8 or move[1] < 1
     
+    def getSquare(self, x, y):
+        return self.ranks[8 - y][x - 1] 
+        
     def occupiedBySameColor(self, move, piece):
-        square = self.ranks[8 - move[1]][move[0] - 1] 
+        square = self.getSquare(move[0], move[1])
         logger.debug('Object for square %r', square)
         if square == 0:
             return 0
@@ -54,7 +69,7 @@ class ChessBoard:
             logger.debug('Color for square %r', square.color)
             logger.debug('Color for piece %r', piece.color)
             return square.color == piece.color
-
+        
         
 king = pieces.King(5, 1, 0)
 print(king.getMoveset())

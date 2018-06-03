@@ -13,6 +13,10 @@ class Piece:
         self.color = color
         
     def getMoveset(self):
+        """
+        This method returns a complete moveset, it does not check the board 
+        for conlicting pieces
+        """
         print("No piece should get here")
 
     
@@ -35,3 +39,6 @@ class King(Piece):
 class Pawn(Piece):
     def __str__(self):
         return "p"  
+    
+    def getMoveset(self):
+        return [(self.x, self.y +1)]
