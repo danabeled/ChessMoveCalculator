@@ -18,13 +18,18 @@ class Piece:
         for conlicting pieces
         """
         print("No piece should get here")
-
+    pieceLetter = "NA"
+    def __str__(self):
+        toStrValue = ""
+        if(self.color ==  0):
+            toStrValue = self.pieceLetter.upper()
+        else:
+            toStrValue = self.pieceLetter.lower()
+            
+        return toStrValue + chr(ord('a') + self.x - 1) + str(self.y)
     
 class King(Piece):
-        
-    
-    def __str__(self):
-        return "K"  
+    pieceLetter = "k"
     
     def getMoveset(self):
         return [(self.x + 1, self.y),
@@ -37,8 +42,7 @@ class King(Piece):
                 (self.x, self.y - 1)]
                 
 class Pawn(Piece):
-    def __str__(self):
-        return "p"  
+    pieceLetter = "p"
     
     def getMoveset(self):
         return [(self.x, self.y +1)]

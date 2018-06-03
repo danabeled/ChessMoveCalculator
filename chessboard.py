@@ -21,9 +21,17 @@ class ChessBoard:
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,pieces.Pawn(5, 2, 0),0,0,0],
+                      [0,0,0,pieces.Pawn(5, 2, 0),pieces.Pawn(5, 2, 1),0,0,0],
                       [0,0,0,0,pieces.King(5, 1, 0),0,0,0]]
     def display(self):
+        """Prints into console visual representation of board
+        
+        Args:
+            None
+            
+        Returns:
+            None
+        """
         for rank in self.ranks:
             for square in rank:
                 print(square, end="\t")
@@ -32,6 +40,17 @@ class ChessBoard:
         print("Not implemented")
     
     def removeIllegalMoves(self, p):
+        """Removes all illegal moves from a piece's moveset
+        
+        Pieces stored movesets are calculated based on current x, y or 
+        hardcoded. Therefore the board must remove moves that are invalid
+        based on it's knowledge of the board. Moves cannot be made if a
+        piece of the same color is on the square
+        
+        Args:
+            p: piece to get moveset 
+        
+        """
         moveset = p.getMoveset();
         correctMoveSet = []
         for move in moveset:
@@ -45,12 +64,13 @@ class ChessBoard:
     def outOfBounds(self, move):
         """Determines if a move is within the board 
         
-        For some pieces it was easier to make their complete moveset than calculate
-        in the subclass, since the moves were so limited, this makes the need
-        to check movesets
+        For some pieces it was easier to make their complete moveset than 
+        calculate in the subclass, since the moves were so limited, this makes 
+        the need to check movesets if it is outside the array
         
         Args:
-            move: A move where [0] is the x coordinate and [1] is the y coordinate
+            move: A move where [0] is the x coordinate and [1] is the y 
+            coordinate
             
         Returns:
             boolean of if within board or not
@@ -58,9 +78,30 @@ class ChessBoard:
         return move[0] > 8 or move[0] < 1 or move[1] > 8 or move[1] < 1
     
     def getSquare(self, x, y):
+        """Fetches the object stored at the x,y coordinate in the ranks array
+        
+        Args:
+            x: File number
+            y: Rank number
+            
+        Returns:
+            Object stored in array at that square, or 0 if nothing stored there
+        
+        For readability, moves are stored with their actual rank/file numbers.
+        These must be translated into array locations.
+        """
         return self.ranks[8 - y][x - 1] 
         
     def occupiedBySameColor(self, move, piece):
+        """Determines if there is a piece of the same color in a sqaure
+        
+        Args:
+            move: An x, y pair where [0] is the x and [1] is the y
+            
+        Returns:
+            0 if no piece, or piece is of other color
+            1 if piece of same color
+        """
         square = self.getSquare(move[0], move[1])
         logger.debug('Object for square %r', square)
         if square == 0:
