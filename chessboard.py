@@ -16,9 +16,9 @@ class ChessBoard:
     
     def __init__(self):
         self.ranks = [[0,0,0,0,0,0,0,0],
+                      [0,0,0,0,0,0,pieces.Rook(7,7,0),0],
                       [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
+                      [0,0,0,pieces.Knight(4, 5, 0),0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,pieces.Pawn(5, 2, 0),pieces.Pawn(5, 2, 1),0,0,0],
@@ -128,10 +128,13 @@ class ChessBoard:
             logger.debug('Color for piece %r', piece.color)
             return square.color == piece.color
         
-        
+knight = pieces.Knight(4, 5, 0)
 king = pieces.King(5, 1, 0)
+rook = pieces.Rook(7,7,0)
 print(king.getMoveset())
 board = ChessBoard()
-print(board.removeIllegalMoves(king))
+print("King's moves:", board.removeIllegalMoves(king))
+print("Knights's moves:", board.removeIllegalMoves(knight))
+print("Rook's moves:", board.removeIllegalMoves(rook))
 board.display()
 print(board.calculateAllMoves(0))

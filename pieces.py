@@ -46,3 +46,45 @@ class Pawn(Piece):
     
     def getMoveset(self):
         return [(self.x, self.y +1)]
+
+class Rook(Piece):
+    pieceLetter = "r"
+    
+    def getMoveset(self):
+        moves = []
+        
+        #Add moves to the left
+        x = self.x - 1
+        while(x > 0):
+            moves.append((x, self.y))
+            x = x - 1
+        #Add moves to the right
+        x = self.x + 1
+        while(x < 9):
+            moves.append((x, self.y))
+            x = x + 1
+        y = self.y - 1
+        #Add moves to the bottom
+        while(y > 0):
+            moves.append((self.x, y))
+            y = y - 1
+        #Add moves to the top
+        y = self.y + 1
+        while(y < 9):
+            moves.append((self.x, y))
+            y = y + 1
+        
+        return moves
+
+class Knight(Piece):
+    pieceLetter = "n"
+    
+    def getMoveset(self):
+        return [(self.x - 1, self.y + 2),
+                (self.x + 1, self.y + 2),
+                (self.x + 2, self.y + 1),
+                (self.x + 2, self.y - 1),
+                (self.x - 2, self.y + 1),
+                (self.x - 2, self.y - 1),
+                (self.x - 1, self.y - 2),
+                (self.x + 1, self.y - 2)]
