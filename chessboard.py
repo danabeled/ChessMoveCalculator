@@ -36,8 +36,23 @@ class ChessBoard:
             for square in rank:
                 print(square, end="\t")
             print("")
-    def calculateAllMoves():
-        print("Not implemented")
+            
+    def calculateAllMoves(self, color):
+        """For a given color player summer all the legal movies he has
+        
+        Args: 
+            Color player 0 is white, 1 is black
+        
+        Returns:
+            Sum of all moves
+        
+        """
+        moveSum = 0
+        for rank in self.ranks:
+            for square in rank:
+                if(square != 0 and square.color == color):
+                    moveSum += len(self.removeIllegalMoves(square))
+        return moveSum
     
     def removeIllegalMoves(self, p):
         """Removes all illegal moves from a piece's moveset
@@ -49,7 +64,9 @@ class ChessBoard:
         
         Args:
             p: piece to get moveset 
-        
+            
+        Returns:
+            Parried down move list for the piece
         """
         moveset = p.getMoveset();
         correctMoveSet = []
@@ -59,7 +76,7 @@ class ChessBoard:
                 logger.debug('Invalid move found %r', move)
             else:
                 correctMoveSet.append(move)
-        return correctMoveSet
+        return correctMoveSet       
     
     def outOfBounds(self, move):
         """Determines if a move is within the board 
@@ -117,3 +134,4 @@ print(king.getMoveset())
 board = ChessBoard()
 print(board.removeIllegalMoves(king))
 board.display()
+print(board.calculateAllMoves(0))
