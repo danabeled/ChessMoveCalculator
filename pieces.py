@@ -76,6 +76,46 @@ class Rook(Piece):
         
         return moves
 
+class Bishop(Piece):
+    pieceLetter = "b"
+    
+    def getMoveset(self):
+        moves = []
+        
+        #Add moves to the left-down
+        x = self.x - 1
+        y = self.y - 1
+        while(x > 0 and y > 0):
+            moves.append((x, y))
+            x = x - 1
+            y = y - 1
+            
+        #Add moves to the left-up
+        x = self.x - 1
+        y = self.y + 1
+        while(x > 0 and y < 9):
+            moves.append((x, y))
+            x = x - 1
+            y = y + 1
+            
+        #Add moves to the right-down
+        x = self.x + 1
+        y = self.y - 1
+        while(x < 9 and y > 0):
+            moves.append((x, y))
+            x = x + 1
+            y = y - 1
+        
+        #Add moves to the right-up
+        x = self.x + 1
+        y = self.y + 1
+        while(x < 9 and y < 9):
+            moves.append((x, y))
+            x = x + 1
+            y = y + 1
+        
+        return moves
+
 class Knight(Piece):
     pieceLetter = "n"
     
