@@ -142,22 +142,24 @@ class Rook(Piece):
         
         #Add moves to the left
         x = self.x - 1
-        while(x > 0):
+        #####This solution below fixes stopping when we see a piece, but
+        #####won't add capturing the piece as a viable move it it's the opponents
+        while(x > 0 and self.getSquare(x, self.y, ranks) == 0):
             moves.append((x, self.y))
             x = x - 1
         #Add moves to the right
         x = self.x + 1
-        while(x < 9):
+        while(x < 9 and self.getSquare(x, self.y, ranks) == 0):
             moves.append((x, self.y))
             x = x + 1
         y = self.y - 1
         #Add moves to the bottom
-        while(y > 0):
+        while(y > 0 and self.getSquare(self.x, y, ranks) == 0):
             moves.append((self.x, y))
             y = y - 1
         #Add moves to the top
         y = self.y + 1
-        while(y < 9):
+        while(y < 9 and self.getSquare(self.x, y, ranks) == 0):
             moves.append((self.x, y))
             y = y + 1
         
