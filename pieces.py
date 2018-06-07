@@ -144,24 +144,44 @@ class Rook(Piece):
         x = self.x - 1
         #####This solution below fixes stopping when we see a piece, but
         #####won't add capturing the piece as a viable move it it's the opponents
-        while(x > 0 and self.getSquare(x, self.y, ranks) == 0):
+        while(x > 0):
             moves.append((x, self.y))
+            square = self.getSquare(x, self.y, ranks)
             x = x - 1
+            if(square != 0):
+                if(square.color != self.color):
+                    moves.append((x, self.y))
+                break
         #Add moves to the right
         x = self.x + 1
-        while(x < 9 and self.getSquare(x, self.y, ranks) == 0):
+        while(x < 9):
             moves.append((x, self.y))
-            x = x + 1
+            square = self.getSquare(x, self.y, ranks)       
+            x = x + 1     
+            if(square != 0):
+                if(square.color != self.color):
+                    moves.append((x, self.y))
+                break
         y = self.y - 1
         #Add moves to the bottom
-        while(y > 0 and self.getSquare(self.x, y, ranks) == 0):
-            moves.append((self.x, y))
-            y = y - 1
+        while(y > 0):
+            moves.append((x, self.y))
+            square = self.getSquare(self.x, y, ranks)        
+            y = y - 1    
+            if(square != 0):
+                if(square.color != self.color):
+                    moves.append((self.x, y))
+                break  
         #Add moves to the top
         y = self.y + 1
-        while(y < 9 and self.getSquare(self.x, y, ranks) == 0):
-            moves.append((self.x, y))
-            y = y + 1
+        while(y < 9):
+            moves.append((x, self.y))
+            square = self.getSquare(self.x, y, ranks)    
+            y = y + 1        
+            if(square != 0):
+                if(square.color != self.color):
+                    moves.append((self.x, y))  
+                break
         
         return moves
 
@@ -171,38 +191,8 @@ class Bishop(Piece):
     def __getMoveset__(self, ranks):
         moves = []
         
-        #Add moves to the left-down
-        x = self.x - 1
-        y = self.y - 1
-        while(x > 0 and y > 0):
-            moves.append((x, y))
-            x = x - 1
-            y = y - 1
-            
-        #Add moves to the left-up
-        x = self.x - 1
-        y = self.y + 1
-        while(x > 0 and y < 9):
-            moves.append((x, y))
-            x = x - 1
-            y = y + 1
-            
-        #Add moves to the right-down
-        x = self.x + 1
-        y = self.y - 1
-        while(x < 9 and y > 0):
-            moves.append((x, y))
-            x = x + 1
-            y = y - 1
-        
-        #Add moves to the right-up
-        x = self.x + 1
-        y = self.y + 1
-        while(x < 9 and y < 9):
-            moves.append((x, y))
-            x = x + 1
-            y = y + 1
-        
+        moves = addDiagMoves(moves, self.x, self.y, ranks)
+                
         return moves
 
 class Knight(Piece):
@@ -217,6 +207,43 @@ class Knight(Piece):
                 (self.x - 2, self.y - 1),
                 (self.x - 1, self.y - 2),
                 (self.x + 1, self.y - 2)]
+
+def addDiagMoves(currentMoves, selfX, selfY, ranks):
+    
+    #Add moves to the left-down
+    x = selfX - 1
+    y = selfY - 1
+    while(x > 0 and y > 0):
+        currentMoves.append((x, y))
+        x = x - 1
+        y = y - 1
+        
+    #Add moves to the left-up
+    x = selfX - 1
+    y = selfY + 1
+    while(x > 0 and y < 9):
+        currentMoves.append((x, y))
+        x = x - 1
+        y = y + 1
+        
+    #Add moves to the right-down
+    x = selfX + 1
+    y = selfY - 1
+    while(x < 9 and y > 0):
+        currentMoves.append((x, y))
+        x = x + 1
+        y = y - 1
+    
+    #Add moves to the right-up
+    x = selfX + 1
+    y = selfY + 1
+    while(x < 9 and y < 9):
+        currentMoves.append((x, y))
+        x = x + 1
+        y = y + 1
+    
+    return currentMoves
+    
         
 king = King(5, 1, 1)
 print(king.getMoveset([[0,0,0,0,0,0,0,0],
