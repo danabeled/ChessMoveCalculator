@@ -87,7 +87,7 @@ class Piece:
             0 if no piece, or piece is of other color
             1 if piece of same color
         """
-        square = self.getSquare(move[0], move[1], ranks)
+        square = getSquare(move[0], move[1], ranks)
         logger.debug('Object for square %r', square)
         if square == 0:
             return 0
@@ -95,22 +95,6 @@ class Piece:
             logger.debug('Color for square %r', square.color)
             logger.debug('Color for piece %r', self.color)
             return square.color == self.color
-        
-            
-    def getSquare(self, x, y, ranks):
-        """Fetches the object stored at the x,y coordinate in the ranks array
-        
-        Args:
-            x: File number
-            y: Rank number
-            
-        Returns:
-            Object stored in array at that square, or 0 if nothing stored there
-        
-        For readability, moves are stored with their actual rank/file numbers.
-        These must be translated into array locations.
-        """
-        return ranks[8 - y][x - 1] 
         
     def getMoveset(self, ranks):
         return self.removeIllegalMoves(ranks)
@@ -140,48 +124,7 @@ class Rook(Piece):
     def __getMoveset__(self, ranks):
         moves = []
         
-        #Add moves to the left
-        x = self.x - 1
-        #####This solution below fixes stopping when we see a piece, but
-        #####won't add capturing the piece as a viable move it it's the opponents
-        while(x > 0):
-            moves.append((x, self.y))
-            square = self.getSquare(x, self.y, ranks)
-            x = x - 1
-            if(square != 0):
-                if(square.color != self.color):
-                    moves.append((x, self.y))
-                break
-        #Add moves to the right
-        x = self.x + 1
-        while(x < 9):
-            moves.append((x, self.y))
-            square = self.getSquare(x, self.y, ranks)       
-            x = x + 1     
-            if(square != 0):
-                if(square.color != self.color):
-                    moves.append((x, self.y))
-                break
-        y = self.y - 1
-        #Add moves to the bottom
-        while(y > 0):
-            moves.append((x, self.y))
-            square = self.getSquare(self.x, y, ranks)        
-            y = y - 1    
-            if(square != 0):
-                if(square.color != self.color):
-                    moves.append((self.x, y))
-                break  
-        #Add moves to the top
-        y = self.y + 1
-        while(y < 9):
-            moves.append((x, self.y))
-            square = self.getSquare(self.x, y, ranks)    
-            y = y + 1        
-            if(square != 0):
-                if(square.color != self.color):
-                    moves.append((self.x, y))  
-                break
+        moves = addStraightMoves(moves, self.x, self.y, self.color, ranks)
         
         return moves
 
@@ -208,6 +151,50 @@ class Knight(Piece):
                 (self.x - 1, self.y - 2),
                 (self.x + 1, self.y - 2)]
 
+def addStraightMoves(currentMoves, selfX, selfY, selfColor, ranks):
+    #Add moves to the left
+    x = selfX - 1
+    while(x > 0):
+        currentMoves.append((x, selfY))
+        square = getSquare(x, selfY, ranks)
+        x = x - 1
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, selfY))
+            break
+    #Add moves to the right
+    x = selfX + 1
+    while(x < 9):
+        currentMoves.append((x, selfY))
+        square = getSquare(x, selfY, ranks)       
+        x = x + 1     
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, selfY))
+            break
+    y = selfY - 1
+    #Add moves to the bottom
+    while(y > 0):
+        currentMoves.append((selfX, y))
+        square = getSquare(selfX, y, ranks)        
+        y = y - 1    
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((selfX, y))
+            break  
+    #Add moves to the top
+    y = selfY + 1
+    while(y < 9):
+        currentMoves.append((selfX, y))
+        square = getSquare(selfX, y, ranks)    
+        y = y + 1        
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((selfX, y))  
+            break
+    
+    return currentMoves
+    
 def addDiagMoves(currentMoves, selfX, selfY, ranks):
     
     #Add moves to the left-down
@@ -243,7 +230,22 @@ def addDiagMoves(currentMoves, selfX, selfY, ranks):
         y = y + 1
     
     return currentMoves
+
+       
+def getSquare(x, y, ranks):
+    """Fetches the object stored at the x,y coordinate in the ranks array
     
+    Args:
+        x: File number
+        y: Rank number
+        
+    Returns:
+        Object stored in array at that square, or 0 if nothing stored there
+    
+    For readability, moves are stored with their actual rank/file numbers.
+    These must be translated into array locations.
+    """
+    return ranks[8 - y][x - 1]     
         
 king = King(5, 1, 1)
 print(king.getMoveset([[0,0,0,0,0,0,0,0],
