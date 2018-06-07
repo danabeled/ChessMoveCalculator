@@ -19,7 +19,7 @@ class ChessBoard:
                       [0,0,0,0,0,0,pieces.Rook(7,7,0),pieces.Rook(8,7,1)],
                       [0,0,0,0,0,0,pieces.Pawn(7,6,0),0],
                       [0,0,0,pieces.Knight(4, 5, 0),0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
+                      [0,pieces.Queen(2,4,0),0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,pieces.Bishop(2,2,0),0,pieces.Pawn(5, 2, 0),pieces.Pawn(5, 2, 1),0,0,0],
                       [0,0,0,0,pieces.King(5, 1, 0),0,0,0]]
@@ -61,11 +61,13 @@ knight = pieces.Knight(4, 5, 0)
 king = pieces.King(5, 1, 0)
 rook = pieces.Rook(7,7,0)
 bishop = pieces.Bishop(2,2,0)
+queen = pieces.Queen(2,4,0)
 board = ChessBoard()
 board.display()
 print("King's moves:", king.getMoveset(board.ranks))
 print("Knights's moves:", knight.getMoveset(board.ranks))
 print("Rook's moves:", rook.getMoveset(board.ranks))
 print("Bishop's moves:", bishop.getMoveset(board.ranks))
+print("Queen's moves:", queen.getMoveset(board.ranks))
 board.display()
 print(board.calculateAllMoves(0))

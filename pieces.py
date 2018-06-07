@@ -138,6 +138,18 @@ class Bishop(Piece):
                 
         return moves
 
+
+class Queen(Piece):
+    pieceLetter = "q"
+    
+    def __getMoveset__(self, ranks):
+        moves = []
+        
+        moves = addDiagMoves(moves, self.x, self.y, ranks)
+        moves = addStraightMoves(moves, self.x, self.y, self.color, ranks)
+                
+        return moves
+
 class Knight(Piece):
     pieceLetter = "n"
     
