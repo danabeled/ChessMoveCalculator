@@ -224,53 +224,53 @@ def addDiagMoves(currentMoves, selfX, selfY, selfColor, ranks):
     x = selfX - 1
     y = selfY - 1
     while(x > 0 and y > 0):
-        currentMoves.append((x, y))
         square = getSquare(x, y, ranks)
-        x = x - 1
-        y = y - 1
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, y))
             break
+        currentMoves.append((x, y))
+        x = x - 1
+        y = y - 1
         
     #Add moves to the left-up
     x = selfX - 1
     y = selfY + 1    
     while(x > 0 and y < 9):
-        currentMoves.append((x, y))
         square = getSquare(x, y, ranks)
-        x = x - 1
-        y = y + 1
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, y))
             break    
+        currentMoves.append((x, y))
+        x = x - 1
+        y = y + 1
         
     #Add moves to the right-down
     x = selfX + 1
     y = selfY - 1    
     while(x < 9 and y > 0):
-        currentMoves.append((x, y))
         square = getSquare(x, y, ranks)
-        x = x + 1
-        y = y - 1
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, y))
-            break    
+            break 
+        currentMoves.append((x, y))  
+        x = x + 1
+        y = y - 1 
         
     #Add moves to the right-up
     x = selfX + 1
     y = selfY + 1
     while(x < 9 and y < 9):
-        currentMoves.append((x, y))
         square = getSquare(x, y, ranks)
-        x = x + 1
-        y = y + 1
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, y))
             break
+        currentMoves.append((x, y))
+        x = x + 1
+        y = y + 1
     
     return currentMoves
 
