@@ -15,7 +15,7 @@ logger.setLevel(logging.DEBUG)
 class ChessBoard:
     
     def __init__(self):
-        self.ranks = [[0,0,0,0,0,0,0,0],
+        self.__ranks = [[0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,pieces.Rook(6,7,0),pieces.Rook(7,7,1),0],
                       [0,0,0,0,0,0,pieces.Pawn(7,6,0),0],
                       [0,0,0,pieces.Knight(4, 5, 0),0,0,0,0],
@@ -32,7 +32,7 @@ class ChessBoard:
         Returns:
             None
         """
-        for rank in self.ranks:
+        for rank in self.__ranks:
             for square in rank:
                 print(square, end="\t")
             print("")
@@ -48,11 +48,14 @@ class ChessBoard:
         
         """
         moveSum = 0
-        for rank in self.ranks:
+        for rank in self.__ranks:
             for square in rank:
                 if(square != 0 and square.color == color):
-                    moveSum += len(square.getMoveset(self.ranks))
+                    moveSum += len(square.getMoveset(self.__ranks))
         return moveSum
+    
+    def getRanks(self):
+        return self.__ranks
     
     
         
@@ -65,11 +68,11 @@ queen = pieces.Queen(2,4,0)
 pawn = pieces.Pawn(4, 2, 0)
 board = ChessBoard()
 board.display()
-print("King's moves:", king.getMoveset(board.ranks))
-print("Knights's moves:", knight.getMoveset(board.ranks))
-print("Rook's moves:", rook.getMoveset(board.ranks))
-print("Bishop's moves:", bishop.getMoveset(board.ranks))
-print("Queen's moves:", queen.getMoveset(board.ranks))
-print("Pawn's moves: ", pawn.getMoveset(board.ranks))
+print("King's moves:", king.getMoveset(board.getRanks()))
+print("Knights's moves:", knight.getMoveset(board.getRanks()))
+print("Rook's moves:", rook.getMoveset(board.getRanks()))
+print("Bishop's moves:", bishop.getMoveset(board.getRanks()))
+print("Queen's moves:", queen.getMoveset(board.getRanks()))
+print("Pawn's moves: ", pawn.getMoveset(board.getRanks()))
 board.display()
 print(board.calculateAllMoves(0))
