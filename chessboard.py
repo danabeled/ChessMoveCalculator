@@ -16,7 +16,7 @@ class ChessBoard:
     
     def __init__(self):
         self.ranks = [[0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,pieces.Rook(7,7,0),pieces.Rook(8,7,1)],
+                      [0,0,0,0,0,pieces.Rook(6,7,0),pieces.Rook(7,7,1),0],
                       [0,0,0,0,0,0,pieces.Pawn(7,6,0),0],
                       [0,0,0,pieces.Knight(4, 5, 0),0,0,0,0],
                       [0,pieces.Queen(2,4,0),0,0,0,0,0,0],
@@ -59,7 +59,7 @@ class ChessBoard:
         
 knight = pieces.Knight(4, 5, 0)
 king = pieces.King(5, 1, 0)
-rook = pieces.Rook(7,7,0)
+rook = pieces.Rook(6,7,0)
 bishop = pieces.Bishop(2,2,0)
 queen = pieces.Queen(2,4,0)
 pawn = pieces.Pawn(4, 2, 0)

@@ -178,43 +178,43 @@ def addStraightMoves(currentMoves, selfX, selfY, selfColor, ranks):
     #Add moves to the left
     x = selfX - 1
     while(x > 0):
-        currentMoves.append((x, selfY))
         square = getSquare(x, selfY, ranks)
-        x = x - 1
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, selfY))
             break
+        currentMoves.append((x, selfY))
+        x = x - 1
     #Add moves to the right
     x = selfX + 1
     while(x < 9):
-        currentMoves.append((x, selfY))
-        square = getSquare(x, selfY, ranks)       
-        x = x + 1     
+        square = getSquare(x, selfY, ranks)     
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((x, selfY))
             break
+        currentMoves.append((x, selfY))  
+        x = x + 1     
     y = selfY - 1
     #Add moves to the bottom
     while(y > 0):
-        currentMoves.append((selfX, y))
-        square = getSquare(selfX, y, ranks)        
-        y = y - 1    
+        square = getSquare(selfX, y, ranks)     
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((selfX, y))
             break  
+        currentMoves.append((selfX, y))   
+        y = y - 1    
     #Add moves to the top
     y = selfY + 1
     while(y < 9):
-        currentMoves.append((selfX, y))
         square = getSquare(selfX, y, ranks)    
-        y = y + 1        
         if(square != 0):
             if(square.color != selfColor):
                 currentMoves.append((selfX, y))  
             break
+        currentMoves.append((selfX, y))
+        y = y + 1        
     
     return currentMoves
     
