@@ -10,7 +10,7 @@ logger.setLevel(logging.DEBUG)
 
 class Piece:
       
-    def __init__(self, current_x, current_y, color):
+    def __init__(self, current_x=0, current_y=0, color=0):
         
         #self.logger.setLevel(logging.ERROR)
         
@@ -20,8 +20,20 @@ class Piece:
         
     pieceLetter = "NA"
     
+    def setX(self, x):
+        self.x = x
+    
+    def setY(self, y):
+        self.y = y
+        
+    def setColor(self, color):
+        self.color = color
+    
     def __getMoveset__(self, ranks):
         print("Nothing should get here")
+    
+    def __repr__(self):
+        return str(self)
     
     def __str__(self):
         toStrValue = ""

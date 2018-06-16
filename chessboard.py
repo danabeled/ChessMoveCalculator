@@ -6,6 +6,7 @@ Created on Tue May 22 22:11:57 2018
 """
 import pieces
 import logging
+from pieceFactory import makePiece
 
 
 logger = logging.getLogger('BOARD')
@@ -22,7 +23,7 @@ class ChessBoard:
                       [0,pieces.Queen(2,4,0),0,0,0,0,0,0],
                       [0,0,pieces.Pawn(5, 2, 1),0,pieces.Pawn(5, 2, 1),0,0,0],
                       [0,pieces.Bishop(2,2,0),0,pieces.Pawn(5, 2, 0),pieces.Pawn(5, 2, 1),0,0,0],
-                      [0,0,0,0,pieces.King(5, 1, 0),0,0,0]]
+                      [0,0,0,0,0,0,0,0]]
     def display(self):
         """Prints into console visual representation of board
         
@@ -57,6 +58,15 @@ class ChessBoard:
     def getRanks(self):
         return self.__ranks
     
+    def addPieceToBoard(self, pieceType, x, y, color):
+        self.__setRank__(x, y, makePiece(pieceType, x, y, color))
+    
+    def getRank(self, x, y):
+        return self.__ranks[8 - y][x - 1]
+    
+    def __setRank__(self, x, y, value):
+        self.__ranks[8 - y][x - 1] = value
+        
     
         
         
@@ -67,8 +77,10 @@ bishop = pieces.Bishop(2,2,0)
 queen = pieces.Queen(2,4,0)
 pawn = pieces.Pawn(4, 2, 0)
 board = ChessBoard()
+board.addPieceToBoard("King", 5, 1, "White")
 board.display()
-print("King's moves:", king.getMoveset(board.getRanks()))
+print("King's moves:", board.getRank(5, 1).getMoveset(board.getRanks()))
+print(repr(knight))
 print("Knights's moves:", knight.getMoveset(board.getRanks()))
 print("Rook's moves:", rook.getMoveset(board.getRanks()))
 print("Bishop's moves:", bishop.getMoveset(board.getRanks()))
