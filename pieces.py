@@ -116,7 +116,9 @@ class Pawn(Piece):
     pieceLetter = "p"
     
     def __getMoveset__(self, ranks):
-        return [(self.x, self.y +1)]
+        moves = [(self.x, self.y +1)]
+        
+        return moves
 
 class Rook(Piece):
     pieceLetter = "r"
