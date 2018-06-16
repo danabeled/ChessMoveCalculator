@@ -115,11 +115,20 @@ class King(Piece):
 class Pawn(Piece):
     pieceLetter = "p"
     
-    def __getMoveset__(self, ranks):
-        moves = [(self.x, self.y +1)]
-        
+    def checkSquareIfAppend(self, move, moves, ranks):
+        square = getSquare(move[0], move[1], ranks)
+        if(square != 0 and (not self.occupiedBySameColor(move, ranks))):
+            moves.append((move[0], move[1]))
         return moves
-
+    
+    def __getMoveset__(self, ranks):
+        moves = [(self.x, self.y + 1)]
+        
+        attackingMoves = [(self.x - 1, self.y + 1), (self.x + 1, self.y + 1)]
+        for move in attackingMoves:
+            moves = self.checkSquareIfAppend(move, moves, ranks)
+        return moves
+    
 class Rook(Piece):
     pieceLetter = "r"
     
