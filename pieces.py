@@ -145,7 +145,7 @@ class Bishop(Piece):
     def __getMoveset__(self, ranks):
         moves = []
         
-        moves = addDiagMoves(moves, self.x, self.y, ranks)
+        moves = addDiagMoves(moves, self.x, self.y, self.color, ranks)
                 
         return moves
 
@@ -156,7 +156,7 @@ class Queen(Piece):
     def __getMoveset__(self, ranks):
         moves = []
         
-        moves = addDiagMoves(moves, self.x, self.y, ranks)
+        moves = addDiagMoves(moves, self.x, self.y, self.color, ranks)
         moves = addStraightMoves(moves, self.x, self.y, self.color, ranks)
                 
         return moves
@@ -218,39 +218,59 @@ def addStraightMoves(currentMoves, selfX, selfY, selfColor, ranks):
     
     return currentMoves
     
-def addDiagMoves(currentMoves, selfX, selfY, ranks):
+def addDiagMoves(currentMoves, selfX, selfY, selfColor, ranks):
     
     #Add moves to the left-down
     x = selfX - 1
     y = selfY - 1
     while(x > 0 and y > 0):
         currentMoves.append((x, y))
+        square = getSquare(x, y, ranks)
         x = x - 1
         y = y - 1
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, y))
+            break
         
     #Add moves to the left-up
     x = selfX - 1
-    y = selfY + 1
+    y = selfY + 1    
     while(x > 0 and y < 9):
         currentMoves.append((x, y))
+        square = getSquare(x, y, ranks)
         x = x - 1
         y = y + 1
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, y))
+            break    
         
     #Add moves to the right-down
     x = selfX + 1
-    y = selfY - 1
+    y = selfY - 1    
     while(x < 9 and y > 0):
         currentMoves.append((x, y))
+        square = getSquare(x, y, ranks)
         x = x + 1
         y = y - 1
-    
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, y))
+            break    
+        
     #Add moves to the right-up
     x = selfX + 1
     y = selfY + 1
     while(x < 9 and y < 9):
         currentMoves.append((x, y))
+        square = getSquare(x, y, ranks)
         x = x + 1
         y = y + 1
+        if(square != 0):
+            if(square.color != selfColor):
+                currentMoves.append((x, y))
+            break
     
     return currentMoves
 
