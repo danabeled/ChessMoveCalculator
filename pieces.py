@@ -146,9 +146,15 @@ class Pawn(Piece):
             moves = []
         else:
             if(self.color == 0):
-                moves = [(self.x, self.y + 1)]
+                if(self.y == 2):
+                    moves = [(self.x, self.y + 1), (self.x, self.y + 2)]
+                else:
+                    moves = [(self.x, self.y + 1)]
             else:
-                moves = [(self.x, self.y - 1)]
+                if(self.y == 7):
+                    moves = [(self.x, self.y - 1), (self.x, self.y - 2)]
+                else:
+                    moves = [(self.x, self.y - 1)]
         attackingMoves = [(self.x - 1, self.y + 1), (self.x + 1, self.y + 1)]
         for move in attackingMoves:
             if(not self.outOfBounds(move)):

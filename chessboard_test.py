@@ -14,7 +14,7 @@ class ChessBoardTests(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 1, 2, "White")
         board.addPieceToBoard("Pawn", 2, 2, "White")
-        self.assertEqual(board.calculateAllMoves(0), 2)
+        self.assertEqual(board.calculateAllMoves(0), 4)
     
     def testSumFourPieces(self):
         board = ChessBoard()
@@ -22,7 +22,7 @@ class ChessBoardTests(unittest.TestCase):
         board.addPieceToBoard("Pawn", 4, 2, "White")
         board.addPieceToBoard("Pawn", 6, 2, "White")
         board.addPieceToBoard("King", 5, 1, "White")
-        self.assertEqual(board.calculateAllMoves(0), 5)
+        self.assertEqual(board.calculateAllMoves(0), 8)
         
         
     def testSumFourPiecesWhiteCanCastle(self):
@@ -32,7 +32,7 @@ class ChessBoardTests(unittest.TestCase):
         board.addPieceToBoard("Pawn", 6, 2, "White")
         board.addPieceToBoard("King", 5, 1, "White")
         board.whiteCanCastle()
-        self.assertEqual(board.calculateAllMoves(0), 6)
+        self.assertEqual(board.calculateAllMoves(0), 9)
         
         
     def testSumFourPiecesBlackCanCastle(self):
