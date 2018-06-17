@@ -20,6 +20,12 @@ class Piece:
         
     pieceLetter = "NA"
     
+    def getX(self):
+        return self.x
+    
+    def getY(self):
+        return self.y
+        
     def setX(self, x):
         self.x = x
     
@@ -300,14 +306,4 @@ def getSquare(x, y, ranks):
     For readability, moves are stored with their actual rank/file numbers.
     These must be translated into array locations.
     """
-    return ranks[8 - y][x - 1]     
-        
-king = King(5, 1, 1)
-print(king.getMoveset([[0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,Rook(7,7,0),0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,Knight(4, 5, 0),0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,Pawn(5, 2, 0),Pawn(5, 2, 1),0,0,0],
-                      [0,0,0,0,King(5, 1, 0),0,0,0]]))
+    return ranks[8 - y][x - 1]
