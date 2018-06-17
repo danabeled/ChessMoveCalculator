@@ -14,7 +14,7 @@ logger = logging.getLogger('BOARD')
 logger.setLevel(logging.DEBUG)
 
 class ChessBoard:
-    
+
     def __init__(self):
         self.__ranks = [[0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
@@ -24,6 +24,15 @@ class ChessBoard:
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0],
                       [0,0,0,0,0,0,0,0]]
+        self.__blackCanCastle = 0
+        self.__whiteCanCastle = 0
+    
+    def blackCanCastle(self):
+        self.__blackCanCastle = 1
+        
+    def whiteCanCastle(self):
+        self.__whiteCanCastle = 1
+    
     def display(self):
         """Prints into console visual representation of board
         
@@ -48,11 +57,15 @@ class ChessBoard:
             Sum of all moves
         
         """
-        moveSum = 0
+        if(color == 0):
+            moveSum = self.__whiteCanCastle
+        else:
+            moveSum = self.__blackCanCastle
+            
         for rank in self.__ranks:
             for square in rank:
                 if(square != 0 and square.color == color):
-                    moveSum += len(square.getMoveset(self.__ranks))
+                    moveSum += len(square.getMoveset(self.__ranks))        
         return moveSum
     
     def getRanks(self):
