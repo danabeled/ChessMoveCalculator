@@ -15,7 +15,6 @@ Created on Sat Jun 16 20:33:04 2018
 
 import unittest
 from chessboard import ChessBoard
-from pieces import King
 
 class KingMoves(unittest.TestCase):
     

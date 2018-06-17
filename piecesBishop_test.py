@@ -7,7 +7,6 @@ Created on Sat Jun 16 21:24:51 2018
 
 import unittest
 from chessboard import ChessBoard
-from pieces import Pawn
 
 class BishopMoves(unittest.TestCase):
     

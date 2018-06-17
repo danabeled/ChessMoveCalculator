@@ -8,7 +8,6 @@ Created on Sat Jun 16 21:17:05 2018
 
 import unittest
 from chessboard import ChessBoard
-from pieces import Pawn
 
 class PawnMoves(unittest.TestCase):
     
