@@ -35,4 +35,18 @@ class PawnMoves(unittest.TestCase):
         self.assertEqual(0, len(moves))
         self.assertNotIn((4, 5), moves)
         
+    def testPawnBlockedAttackLeft(self):
+        board = ChessBoard()
+        board.addPieceToBoard("Pawn", 4, 4, "White")
+        board.addPieceToBoard("Pawn", 3, 5, "Black")
+        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        self.assertIn((3, 5), moves)
+        
+        
+    def testPawnBlockedAttackRigh(self):
+        board = ChessBoard()
+        board.addPieceToBoard("Pawn", 4, 4, "White")
+        board.addPieceToBoard("Pawn", 5, 5, "Black")
+        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        self.assertIn((5, 5), moves)
         
