@@ -140,7 +140,10 @@ class Pawn(Piece):
         return moves
     
     def __getMoveset__(self, ranks):
-        moves = [(self.x, self.y + 1)]
+        if(getSquare(self.x, self.y + 1, ranks) != 0):
+            moves = []
+        else:
+            moves = [(self.x, self.y + 1)]
         
         attackingMoves = [(self.x - 1, self.y + 1), (self.x + 1, self.y + 1)]
         for move in attackingMoves:
