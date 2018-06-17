@@ -13,7 +13,7 @@ class QueenMoves(unittest.TestCase):
     def testCenterAllMoves(self):
         board = ChessBoard()
         board.addPieceToBoard("Queen", 4, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(27, len(moves))
         self.assertIn((4, 3), moves) #1
         self.assertIn((4, 2), moves) #2
@@ -54,7 +54,7 @@ class QueenMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 3, "White")
         board.addPieceToBoard("Pawn", 4, 3, "White")
         board.addPieceToBoard("Pawn", 3, 3, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(0, len(moves))
         
     def testCenterAllMovesBlockedDiff(self):
@@ -68,5 +68,5 @@ class QueenMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 3, "White")
         board.addPieceToBoard("Pawn", 4, 3, "White")
         board.addPieceToBoard("Pawn", 3, 3, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(8, len(moves))

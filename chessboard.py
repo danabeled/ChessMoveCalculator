@@ -74,7 +74,10 @@ class ChessBoard:
     def addPieceToBoard(self, pieceType, x, y, color):
         self.__setRank__(x, y, makePiece(pieceType, x, y, color))
     
-    def getRank(self, x, y):
+    def getRank(self, rankNumber):
+        return self.__ranks[8 - rankNumber]
+    
+    def getSquare(self, x, y):
         return self.__ranks[8 - y][x - 1]
     
     def __setRank__(self, x, y, value):

@@ -13,7 +13,7 @@ class BishopMoves(unittest.TestCase):
     def testCenterAllMoves(self):
         board = ChessBoard()
         board.addPieceToBoard("Bishop", 4, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(13, len(moves))
         self.assertIn((3, 3), moves) #1
         self.assertIn((2, 2), moves) #2
@@ -36,7 +36,7 @@ class BishopMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 5, "White")
         board.addPieceToBoard("Pawn", 3, 5, "White")
         board.addPieceToBoard("Pawn", 5, 3, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(0, len(moves))
         
     def testCenterAllMovesBlockedDiff(self):
@@ -46,5 +46,5 @@ class BishopMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 5, "Black")
         board.addPieceToBoard("Pawn", 3, 5, "Black")
         board.addPieceToBoard("Pawn", 5, 3, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(4, len(moves))

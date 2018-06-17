@@ -14,7 +14,7 @@ class PawnMoves(unittest.TestCase):
     def testPawnUnblocked(self):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(1, len(moves))
         self.assertIn((4, 5), moves)
         
@@ -22,7 +22,7 @@ class PawnMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
         board.addPieceToBoard("Pawn", 4, 5, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(0, len(moves))
         self.assertNotIn((4, 5), moves)
         
@@ -30,7 +30,7 @@ class PawnMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
         board.addPieceToBoard("Pawn", 4, 5, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(0, len(moves))
         self.assertNotIn((4, 5), moves)
         
@@ -38,7 +38,7 @@ class PawnMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
         board.addPieceToBoard("Pawn", 3, 5, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertIn((3, 5), moves)
         
         
@@ -46,6 +46,6 @@ class PawnMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
         board.addPieceToBoard("Pawn", 5, 5, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertIn((5, 5), moves)
         

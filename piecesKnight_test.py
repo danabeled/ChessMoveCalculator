@@ -14,7 +14,7 @@ class KnightMoves(unittest.TestCase):
     def testKnightCenterAllMoves(self):
         board = ChessBoard()
         board.addPieceToBoard("Knight", 4, 4, 0)
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(8, len(moves))
         self.assertIn((2, 3), moves)
         self.assertIn((2, 5), moves)
@@ -36,7 +36,7 @@ class KnightMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 3, "White")
         board.addPieceToBoard("Pawn", 4, 3, "White")
         board.addPieceToBoard("Pawn", 3, 3, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(8, len(moves))
         self.assertIn((2, 3), moves)
         self.assertIn((2, 5), moves)
@@ -51,13 +51,13 @@ class KnightMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("Knight", 4, 4, 0)
         board.addPieceToBoard("Pawn", 2, 3, 0)
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertNotIn((2, 3), moves)
     
     def testKnightCenterConflictingSquareDiffColor(self):
         board = ChessBoard()
         board.addPieceToBoard("Knight", 4, 4, "White")
         board.addPieceToBoard("Pawn", 2, 3, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertIn((2, 3), moves)
         

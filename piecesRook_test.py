@@ -13,7 +13,7 @@ class RookMoves(unittest.TestCase):
     def testCenterAllMoves(self):
         board = ChessBoard()
         board.addPieceToBoard("Rook", 4, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(14, len(moves))
         self.assertIn((4, 3), moves) #1
         self.assertIn((4, 2), moves) #2
@@ -37,7 +37,7 @@ class RookMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 4, 5, "White")
         board.addPieceToBoard("Pawn", 3, 4, "White")
         board.addPieceToBoard("Pawn", 5, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(0, len(moves))
         
     def testCenterAllMovesBlockedDiff(self):
@@ -47,5 +47,5 @@ class RookMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 4, 5, "Black")
         board.addPieceToBoard("Pawn", 3, 4, "Black")
         board.addPieceToBoard("Pawn", 5, 4, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(4, len(moves))

@@ -21,7 +21,7 @@ class KingMoves(unittest.TestCase):
     def testKingCenterAllMoves(self):
         board = ChessBoard()
         board.addPieceToBoard("King", 4, 4, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertEqual(8, len(moves))
         self.assertIn((3, 3), moves)
         self.assertIn((3, 4), moves)
@@ -37,13 +37,13 @@ class KingMoves(unittest.TestCase):
         board = ChessBoard()
         board.addPieceToBoard("King", 4, 4, "White")
         board.addPieceToBoard("Pawn", 4, 3, "White")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertNotIn((4, 3), moves)
     
     def testKingCenterConflictingSquareDiffColor(self):
         board = ChessBoard()
         board.addPieceToBoard("King", 4, 4, "White")
         board.addPieceToBoard("Pawn", 4, 3, "Black")
-        moves = board.getRank(4, 4).getMoveset(board.getRanks())
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
         self.assertIn((4, 3), moves)
         
