@@ -23,7 +23,11 @@ def initBoard(fileLocation):
         return
     counter = 8
     for row in data:
-        analyzeRow(row, counter, board)
+        try:
+            analyzeRow(row, counter, board)
+        except ValueError:
+            print("A bad value was in row", counter)
+            return
         counter -= 1
     infile.close()
     print("Imported board:")
@@ -65,3 +69,4 @@ print("Number of moves, white:", b2.calculateAllMoves(0))
 print("Number of moves, black:", b2.calculateAllMoves(1))
 b3 = initBoard("input\\midendgame.fen")
 b4 = initBoard("input\\noslash.fen")
+b4 = initBoard("input\\badvalues.fen")
