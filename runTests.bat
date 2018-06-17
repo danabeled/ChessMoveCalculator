@@ -1,0 +1,1 @@
+python -m unittest -v pieceFactory_test.py
