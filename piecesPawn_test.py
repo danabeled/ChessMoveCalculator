@@ -104,5 +104,21 @@ class PawnMoves(unittest.TestCase):
         board.addPieceToBoard("Pawn", 4, 4, "White")
         board.addPieceToBoard("Pawn", 5, 5, "Black")
         moves = board.getSquare(4, 4).getMoveset(board.getRanks())
-        self.assertIn((5, 5), moves)
+        self.assertIn((5, 5), moves)     
+        
+    def testPawnBlockedAttackBlackLeft(self):
+        board = ChessBoard()
+        board.addPieceToBoard("Pawn", 4, 4, "White")
+        board.addPieceToBoard("Pawn", 3, 5, "Black")
+        moves = board.getSquare(3, 5).getMoveset(board.getRanks())
+        self.assertIn((4, 4), moves)
+        
+        
+    def testPawnBlockedAttackBlackRight(self):
+        board = ChessBoard()
+        board.addPieceToBoard("Pawn", 4, 4, "White")
+        board.addPieceToBoard("Pawn", 5, 5, "Black")
+        moves = board.getSquare(5, 5).getMoveset(board.getRanks())
+        self.assertIn((4, 4), moves)
+        
         

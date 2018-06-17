@@ -12,6 +12,8 @@ from boardInitializer import initBoard
 def evaluateBoard():
     file = input("Enter file (.fen extension included) location: ")
     board = initBoard(file)
+    if(board == None):
+        return
     print("Imported board:")
     board.display()
     print("White has", board.calculateAllMoves(0), "moves")
@@ -28,3 +30,9 @@ def evaluateBoard():
                 print("Piece: ", square, "moveset is", square.getMoveset(board.getRanks()))
                 
 evaluateBoard()
+evaluate_another = ""
+while(evaluate_another.upper() != "N"):
+    evaluate_another = input("Would you like to evaluate another board? (Y/N) ")
+    if(evaluate_another.upper() == "Y"):
+        evaluateBoard()
+    
