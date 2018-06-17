@@ -30,8 +30,6 @@ def initBoard(fileLocation):
             return
         counter -= 1
     infile.close()
-    print("Imported board:")
-    board.display()
     return board
 
 def analyzeRow(rowText, rowNumber, board):
@@ -61,12 +59,14 @@ def analyzeRow(rowText, rowNumber, board):
             counter += int(character)
         else:
             raise ValueError('An unknown value was in the .fen file.') 
-    
-b1 = initBoard("input\\initial.fen")
-print("Number of moves:", b1.calculateAllMoves(0))
-b2 = initBoard("input\\midgame.fen")
-print("Number of moves, white:", b2.calculateAllMoves(0))
-print("Number of moves, black:", b2.calculateAllMoves(1))
-b3 = initBoard("input\\midendgame.fen")
-b4 = initBoard("input\\noslash.fen")
-b4 = initBoard("input\\badvalues.fen")
+
+### Integration tests ####
+if __name__ == "__main__":
+    b1 = initBoard("input\\initial.fen")
+    print("Number of moves:", b1.calculateAllMoves(0))
+    b2 = initBoard("input\\midgame.fen")
+    print("Number of moves, white:", b2.calculateAllMoves(0))
+    print("Number of moves, black:", b2.calculateAllMoves(1))
+    b3 = initBoard("input\\midendgame.fen")
+    b4 = initBoard("input\\noslash.fen")
+    b4 = initBoard("input\\badvalues.fen")

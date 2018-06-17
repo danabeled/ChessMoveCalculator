@@ -6,23 +6,25 @@ Created on Sat Jun 16 19:55:48 2018
 """
 
 from chessboard import ChessBoard
-import pieces
+from boardInitializer import initBoard
 
 
-knight = pieces.Knight(4, 5, 0)
-rook = pieces.Rook(6,7,0)
-bishop = pieces.Bishop(2,2,0)
-pawn = pieces.Pawn(4, 2, 0)
-board = ChessBoard()
-board.addPieceToBoard("King", 5, 1, "White")
-board.addPieceToBoard("Queen", 2, 4, "White")
-board.display()
-print("King's moves:", board.getRank(5, 1).getMoveset(board.getRanks()))
-print(repr(knight))
-print("Knights's moves:", knight.getMoveset(board.getRanks()))
-print("Rook's moves:", rook.getMoveset(board.getRanks()))
-print("Bishop's moves:", bishop.getMoveset(board.getRanks()))
-print("Queen's moves:", board.getRank(2, 4).getMoveset(board.getRanks()))
-print("Pawn's moves: ", pawn.getMoveset(board.getRanks()))
-board.display()
-print(board.calculateAllMoves(0))
+def evaluateBoard():
+    file = input("Enter file (.fen extension included) location: ")
+    board = initBoard(file)
+    print("Imported board:")
+    board.display()
+    print("White has", board.calculateAllMoves(0), "moves")
+    print("Black has", board.calculateAllMoves(1), "moves")
+    choose_display_moves = ""
+    while(choose_display_moves.upper() != "N"):
+        choose_display_moves = input("Would you like to see the moves of a piece? (Y/N) ")
+        if(choose_display_moves.upper() == "Y"):
+            x, y = eval(input("Enter an x, y coordinate: "))
+            square = board.getSquare(x, y)
+            if(square == 0):
+                print("No piece there...")
+            else:
+                print("Piece: ", square, "moveset is", square.getMoveset(board.getRanks()))
+                
+evaluateBoard()
