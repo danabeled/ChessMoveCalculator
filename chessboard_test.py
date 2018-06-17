@@ -40,17 +40,17 @@ class ChessBoardTests(unittest.TestCase):
         board.addPieceToBoard("Pawn", 5, 2, "Black")
         board.addPieceToBoard("Pawn", 4, 2, "Black")
         board.addPieceToBoard("Pawn", 6, 2, "Black")
-        board.addPieceToBoard("King", 5, 1, "Black")
+        board.addPieceToBoard("King", 4, 1, "Black")
         board.blackCanCastle()
         self.assertEqual(board.calculateAllMoves(1), 6)
         
     def testOppositeNotCounted(self):
         board = ChessBoard()
-        board.addPieceToBoard("Pawn", 5, 2, "Black")
-        board.addPieceToBoard("Pawn", 4, 2, "Black")
-        board.addPieceToBoard("Pawn", 6, 2, "Black")
-        board.addPieceToBoard("King", 5, 1, "Black")
-        board.addPieceToBoard("King", 5, 8, "White")
+        board.addPieceToBoard("Pawn", 5, 2, "White")
+        board.addPieceToBoard("Pawn", 4, 2, "White")
+        board.addPieceToBoard("Pawn", 6, 2, "White")
+        board.addPieceToBoard("King", 5, 1, "White")
+        board.addPieceToBoard("King", 5, 8, "Black")
         board.blackCanCastle()
         self.assertEqual(board.calculateAllMoves(1), 6)
         

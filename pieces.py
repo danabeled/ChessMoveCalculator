@@ -140,11 +140,15 @@ class Pawn(Piece):
         return moves
     
     def __getMoveset__(self, ranks):
-        if(getSquare(self.x, self.y + 1, ranks) != 0):
+        if(getSquare(self.x, self.y + 1, ranks) != 0 and self.color == 0):
+            moves = []
+        elif(getSquare(self.x, self.y - 1, ranks) != 0 and self.color == 1):
             moves = []
         else:
-            moves = [(self.x, self.y + 1)]
-        
+            if(self.color == 0):
+                moves = [(self.x, self.y + 1)]
+            else:
+                moves = [(self.x, self.y - 1)]
         attackingMoves = [(self.x - 1, self.y + 1), (self.x + 1, self.y + 1)]
         for move in attackingMoves:
             if(not self.outOfBounds(move)):

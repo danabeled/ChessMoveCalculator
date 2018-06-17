@@ -18,6 +18,14 @@ class PawnMoves(unittest.TestCase):
         self.assertEqual(1, len(moves))
         self.assertIn((4, 5), moves)
         
+        
+    def testPawnUnblockedBlack(self):
+        board = ChessBoard()
+        board.addPieceToBoard("Pawn", 4, 4, "Black")
+        moves = board.getSquare(4, 4).getMoveset(board.getRanks())
+        self.assertEqual(1, len(moves))
+        self.assertIn((4, 3), moves)
+        
     def testPawnBlockedSameColor(self):
         board = ChessBoard()
         board.addPieceToBoard("Pawn", 4, 4, "White")
