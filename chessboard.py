@@ -4,7 +4,7 @@ Created on Tue May 22 22:11:57 2018
 
 @author: Dan
 """
-import pieces
+
 import logging
 from pieceFactory import makePiece
 
