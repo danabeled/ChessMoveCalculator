@@ -8,7 +8,7 @@ Created on Sat Jun 16 21:24:51 2018
 import unittest
 from chessboard import ChessBoard
 
-class BishopMoves(unittest.TestCase):
+class RookMoves(unittest.TestCase):
     
     def testCenterAllMoves(self):
         board = ChessBoard()

@@ -1,6 +1,1 @@
-python -m unittest -v pieceFactory_test.py
-python -m unittest -v piecesKnight_test.py
-python -m unittest -v piecesKing_test.py
-python -m unittest -v piecesPawn_test.py
-python -m unittest -v piecesBishop_test.py
-python -m unittest -v piecesRook_test.py
+python -m unittest -v pieceFactory_test.py piecesKnight_test.py piecesKnight_test.py piecesKing_test.py piecesPawn_test.py piecesBishop_test.py piecesRook_test.py piecesQueen_test.py
