@@ -147,7 +147,8 @@ class Pawn(Piece):
         
         attackingMoves = [(self.x - 1, self.y + 1), (self.x + 1, self.y + 1)]
         for move in attackingMoves:
-            moves = self.checkSquareIfAppend(move, moves, ranks)
+            if(not self.outOfBounds(move)):
+                moves = self.checkSquareIfAppend(move, moves, ranks)
         return moves
     
 class Rook(Piece):

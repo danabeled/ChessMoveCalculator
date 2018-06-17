@@ -11,23 +11,57 @@ from pieces import Pawn
 def initBoard(fileLocation):
     board = ChessBoard()
     
-    infile = open(fileLocation, "r")
+    try:    
+        infile = open(fileLocation, "r")
+    except FileNotFoundError:
+        print("File", fileLocation, "could not be found, please check your input")
+        return
+    
     data = infile.read().split('/')
-    print(data)
+    if(len(data) != 8):
+        print("Input file", fileLocation, "did not contain enough ranks, please check your input")
+        return
+    counter = 8
+    for row in data:
+        analyzeRow(row, counter, board)
+        counter -= 1
     infile.close()
+    print("Imported board:")
+    board.display()
+    return board
 
 def analyzeRow(rowText, rowNumber, board):
-    if(rowText[0].islower()):
-        color = "Black"
-    if(rowText[0].isupper()):
-        color = "White"
-    if(rowText[0].upper() == "P"):
-        board.addPieceToBoard("Pawn", 1, rowNumber, color)
-    if(rowText[0].upper() == "R"):
-        board.addPieceToBoard("Rook", 1, rowNumber, color)
-    if(rowText[0].upper() == "N"):
-        board.addPieceToBoard("Knight", 1, rowNumber, color)
-    if(rowText[0].upper() == "B"):
-        board.addPieceToBoard("Bishop", 1, rowNumber, color)
+    counter = 1
+    for character in rowText:
+        if(character.islower()):
+            color = "Black"
+        if(character.isupper()):
+            color = "White"
+        pieceString = ""
+        if(character.upper() == "P"):
+            pieceString = "Pawn"
+        elif(character.upper() == "R"):
+            pieceString = "Rook"
+        elif(character.upper() == "N"):
+            pieceString = "Knight"
+        elif(character.upper() == "B"):
+            pieceString = "Bishop"
+        elif(character.upper() == "Q"):
+            pieceString = "Queen"
+        elif(character.upper() == "K"):
+            pieceString = "King"
+        if(pieceString != ""):
+            board.addPieceToBoard(pieceString, counter, rowNumber, color)
+            counter += 1
+        elif(character.isnumeric()):
+            counter += int(character)
+        else:
+            raise ValueError('An unknown value was in the .fen file.') 
     
-initBoard("initial.fen")
+b1 = initBoard("input\\initial.fen")
+print("Number of moves:", b1.calculateAllMoves(0))
+b2 = initBoard("input\\midgame.fen")
+print("Number of moves, white:", b2.calculateAllMoves(0))
+print("Number of moves, black:", b2.calculateAllMoves(1))
+b3 = initBoard("input\\midendgame.fen")
+b4 = initBoard("input\\noslash.fen")
