@@ -62,11 +62,16 @@ def analyzeRow(rowText, rowNumber, board):
 
 ### Integration tests ####
 if __name__ == "__main__":
-    b1 = initBoard("input\\initial.fen")
-    print("Number of moves:", b1.calculateAllMoves(0))
-    b2 = initBoard("input\\midgame.fen")
-    print("Number of moves, white:", b2.calculateAllMoves(0))
-    print("Number of moves, black:", b2.calculateAllMoves(1))
-    b3 = initBoard("input\\midendgame.fen")
-    b4 = initBoard("input\\noslash.fen")
-    b4 = initBoard("input\\badvalues.fen")
+    inputfiles = ["input\\initial.fen", "input\\midgame.fen", "input\\midgame2.fen", 
+                  "input\\midgame3.fen", "input\\midendgame.fen",
+                  "input\\noslash.fen", "input\\badvalues.fen", "input\\endgame1.fen",
+                  "input\\endgame2.fen", "input\\endgame3.fen", "input\\queensgambitaccepted.fen",
+                  "input\\queensgambitdeclined.fen", "input\\ruylopez.fen",
+                  "input\\ruylopezexchangevariation.fen"]
+    for inputfile in inputfiles:
+        b = initBoard(inputfile)
+        print("Evaluting file", inputfile)
+        if(b != None):
+            b.display()
+            print("Number of moves, white:", b.calculateAllMoves(0))
+            print("Number of moves, black:", b.calculateAllMoves(1))

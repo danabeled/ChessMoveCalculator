@@ -8,6 +8,16 @@ Created on Sat Jun 16 19:40:39 2018
 from pieces import King, Queen, Rook, Bishop, Knight, Pawn
 
 def makePiece(pieceString, x, y, color):
+    """This method returns a piece in a given x, y, and color
+    
+    Args: 
+        x - x coordinate - integer
+        y - y coordinate - integer
+        color - White, Black
+        
+    Returns:
+        Piece object
+    """
     if(pieceString == "King"):
         piece = King()
     elif(pieceString == "Queen"):

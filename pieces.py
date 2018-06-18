@@ -20,18 +20,23 @@ class Piece:
         
     pieceLetter = "NA"
     
+    #Getter for X
     def getX(self):
         return self.x
     
+    #Getter for Y
     def getY(self):
         return self.y
         
+    #Setter for X
     def setX(self, x):
         self.x = x
     
+    #Setter for Y
     def setY(self, y):
         self.y = y
         
+    #Setter for color
     def setColor(self, color):
         self.color = color
     
