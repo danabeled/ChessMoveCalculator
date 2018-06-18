@@ -34,6 +34,21 @@ but these were often harded to read with the human eye. I ended up using the
 [following website](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) to quickly
 generate files to integration test with.
 
+### Reading .fen files
+Forsyth-Edwards notation works as follows: 
+
+Pieces are represented as letters...
++K for King
++Q for Queen
++R for Rook
++B for Bishop
++N for Knight
++P for Pawn
+
+Upper case letters denote white pieces and lower case denote black pieces. \\ characters
+denote the different ranks. Numbers denote blank spaces, where "2" would be 2 squares without
+any peices in them.
+
 ## References
 [Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
 [netreal .fen Generator](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) 
