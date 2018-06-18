@@ -38,12 +38,12 @@ generate files to integration test with.
 Forsyth-Edwards notation works as follows: 
 
 Pieces are represented as letters...
-+K for King
-+Q for Queen
-+R for Rook
-+B for Bishop
-+N for Knight
-+P for Pawn
++ K for King
++ Q for Queen
++ R for Rook
++ B for Bishop
++ N for Knight
++ P for Pawn
 
 Upper case letters denote white pieces and lower case denote black pieces. \\ characters
 denote the different ranks. Numbers denote blank spaces, where "2" would be 2 squares without
