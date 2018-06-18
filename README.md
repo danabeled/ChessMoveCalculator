@@ -1,8 +1,8 @@
 # Chess Move Calculator
 The goal of this project was to create a python library that was able to
 calculate the number of moves that each player had. There is a section of
-Chess Game Theory that discusses "space" on a board. It is theorized that
-the player with more moves available to him or her has an advantage in the
+Chess Game Theory that discusses "positional play" on a board. It is theorized 
+that the player with more moves available to him or her has an advantage in the
 game. I figured by starting this project I might later be able to use this
 calculation as variable to a machine learning algorithm in a later class. 
 
@@ -33,3 +33,8 @@ During research I found there were representation that allowed for better compre
 but these were often harded to read with the human eye. I ended up using the
 [following website](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) to quickly
 generate files to integration test with.
+
+## References
+[Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
+[netreal .fen Generator](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) 
+[Chess Terminology](https://simple.wikipedia.org/wiki/List_of_chess_terms)
