@@ -9,6 +9,15 @@ from chessboard import ChessBoard
 from pieces import Pawn
 
 def initBoard(fileLocation):
+    """This method reads a .fen file and returns a board representing its state
+    
+    Args:
+        Complete or partial filepath to .fen file
+        
+    Returns:
+        Board representing contents of file, or None if an error during analysis
+    
+    """
     board = ChessBoard()
     
     try:    
@@ -33,6 +42,18 @@ def initBoard(fileLocation):
     return board
 
 def analyzeRow(rowText, rowNumber, board):
+    """This method analyzes a section of a .fen file
+    
+    Args:
+        rowText - The text between the slashes of a .fen file
+        
+        rowNumber - Rank number that is being analyzed
+        
+        board - Board that pieces are being added to
+        
+    Returns:
+        None
+    """
     counter = 1
     for character in rowText:
         if(character.islower()):

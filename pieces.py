@@ -120,6 +120,15 @@ class Piece:
             return square.color == self.color
         
     def getMoveset(self, ranks):
+        """Returns a complete moveset for a piece
+           with illegal moves removed
+           
+        Args:
+            Ranks - Board ranks for illegal move analysis
+            
+        Returns:
+            List of tuple of moves
+        """
         return self.removeIllegalMoves(ranks)
     
 class King(Piece):

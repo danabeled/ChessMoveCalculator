@@ -28,9 +28,13 @@ class ChessBoard:
         self.__whiteCanCastle = 0
     
     def blackCanCastle(self):
+        """Method sets black as able to castle to be counted in moves
+        """
         self.__blackCanCastle = 1
         
     def whiteCanCastle(self):
+        """Method sets white as able to castle to be counted in moves
+        """
         self.__whiteCanCastle = 1
     
     def display(self):
@@ -69,15 +73,37 @@ class ChessBoard:
         return moveSum
     
     def getRanks(self):
+        """ Method returns all squares in chess board
+        """
         return self.__ranks
     
     def addPieceToBoard(self, pieceType, x, y, color):
+        """Method creates a piece and adds it to a square on the board
+        overwriting previous contents
+        
+        Args:
+            pieceType - "King", "Queen", "Rook", "Bishop", "Knight", "Pawn"
+            x - x coordinate
+            y - y coordinate
+            color - "White", "Black"
+        """
         self.__setRank__(x, y, makePiece(pieceType, x, y, color))
     
     def getRank(self, rankNumber):
+        """Returns an entire rank of the board
+        
+        Args:
+            rankNumber - Number of rank to get where 1 is white's back
+                         rank and 8 is black's back rank
+                         
+        Returns:
+            List of square values
+        """
         return self.__ranks[8 - rankNumber]
     
     def getSquare(self, x, y):
+        """Returns a specific square on the board
+        """
         return self.__ranks[8 - y][x - 1]
     
     def __setRank__(self, x, y, value):
