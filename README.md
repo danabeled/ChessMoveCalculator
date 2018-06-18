@@ -50,6 +50,6 @@ denote the different ranks. Numbers denote blank spaces, where "2" would be 2 sq
 any peices in them.
 
 ## References
-[Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
-[netreal .fen Generator](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) 
-[Chess Terminology](https://simple.wikipedia.org/wiki/List_of_chess_terms)
++ [Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
++ [netreal .fen Generator](http://www.netreal.de/Forsyth-Edwards-Notation/index.php?) 
++ [Chess Terminology](https://simple.wikipedia.org/wiki/List_of_chess_terms)
