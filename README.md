@@ -6,6 +6,10 @@ that the player with more moves available to him or her has an advantage in the
 game. I figured by starting this project I might later be able to use this
 calculation as variable to a machine learning algorithm in a later class. 
 
+## Documents
+My project summary is located as a .pdf file in the docs folder. UML is in a .png
+file in the docs folder. Code was continually checked into [a on a Github repo](https://github.com/danabeled/ChessMoveCalculator)
+
 ## Design
 The main three modules that make the calculation go are chessboard.py, pieces.py,
 and pieceFactory.py. The class ChessBoard in chessboard.py is a container for the 
