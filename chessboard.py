@@ -110,5 +110,19 @@ class ChessBoard:
         self.__ranks[8 - y][x - 1] = value
         
     
+### Integration tests ####
+if __name__ == "__main__":
+    print("Integration test board")
+    board = ChessBoard()
+    board.addPieceToBoard("Queen", 6, 3, "White")
+    board.addPieceToBoard("King", 6, 1, "White")
+    board.addPieceToBoard("King", 1, 8, "Black")
+    board.addPieceToBoard("Pawn", 1, 7, "Black")
+    board.addPieceToBoard("Knight", 1, 7, "Black")
+    board.addPieceToBoard("Bishop", 4, 7, "Black")
+    board.addPieceToBoard("Rook", 3, 7, "Black")
+    board.display()
+    print("White's moves", board.calculateAllMoves(0))
+    print("Black's moves", board.calculateAllMoves(1))
         
         

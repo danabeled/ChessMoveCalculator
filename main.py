@@ -22,12 +22,18 @@ def evaluateBoard():
     while(choose_display_moves.upper() != "N"):
         choose_display_moves = input("Would you like to see the moves of a piece? (Y/N) ")
         if(choose_display_moves.upper() == "Y"):
-            x, y = eval(input("Enter an x, y coordinate: "))
-            square = board.getSquare(x, y)
-            if(square == 0):
-                print("No piece there...")
-            else:
-                print("Piece: ", square, "moveset is", square.getMoveset(board.getRanks()))
+            try:
+                x, y = eval(input("Enter an x, y coordinate: "))
+                try:
+                    square = board.getSquare(x, y)
+                    if(square == 0):
+                        print("No piece there...")
+                    else:
+                        print("Piece: ", square, "moveset is", square.getMoveset(board.getRanks()))
+                except IndexError:
+                    print("Invalid x, y coordinate, off the board")
+            except TypeError:
+                print("Not enough values supplied, values should be commma separated")
                 
 evaluateBoard()
 evaluate_another = ""
