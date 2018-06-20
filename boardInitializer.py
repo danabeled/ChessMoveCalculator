@@ -86,7 +86,7 @@ if __name__ == "__main__":
     inputfiles = ["input\\initial.fen", "input\\midgame.fen", "input\\midgame2.fen", 
                   "input\\midgame3.fen", "input\\midendgame.fen",
                   "input\\noslash.fen", "input\\badvalues.fen", "input\\endgame1.fen",
-                  "input\\endgame2.fen", "input\\endgame3.fen", "input\\queensgambitaccepted.fen",
+                  "input\\endgame2.fen", "input\\endgame3.fen", "input\\queensgambitsuperaccepted.fen",
                   "input\\queensgambitdeclined.fen", "input\\ruylopez.fen",
                   "input\\ruylopezexchangevariation.fen"]
     for inputfile in inputfiles:
